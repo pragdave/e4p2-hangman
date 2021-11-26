@@ -73,6 +73,38 @@ defmodule HangmanImplGameTest do
     |> test_sequence_of_moves()
   end
 
+  test "can handle a winning game" do
+    [
+      # guess | state     turns  letters                     used
+      ["a", :bad_guess,    6, ["_", "_", "_", "_", "_"], ["a"]],
+      ["a", :already_used, 6, ["_", "_", "_", "_", "_"], ["a"]],
+      ["e", :good_guess,   6, ["_", "e", "_", "_", "_"], ["a", "e"]],
+      ["x", :bad_guess,    5, ["_", "e", "_", "_", "_"], ["a", "e", "x"]],
+      ["l", :good_guess,   5, ["_", "e", "l", "l", "_"], ["a", "e", "l", "x"]],
+      ["o", :good_guess,   5, ["_", "e", "l", "l", "o"], ["a", "e", "l", "o", "x"]],
+      ["y", :bad_guess,    4, ["_", "e", "l", "l", "o"], ["a", "e", "l", "o", "x", "y"]],
+      ["h", :won,          4, ["h", "e", "l", "l", "o"], ["a", "e", "h", "l", "o", "x", "y"]],
+    ]
+    |> test_sequence_of_moves()
+  end
+
+  test "can handle a losing game" do
+    [
+      # guess | state     turns  letters                     used
+      ["a", :bad_guess,    6, ["_", "_", "_", "_", "_"], ["a"]],
+      ["b", :bad_guess,    5, ["_", "_", "_", "_", "_"], ["a", "b"]],
+      ["c", :bad_guess,    4, ["_", "_", "_", "_", "_"], ["a", "b", "c"]],
+      ["d", :bad_guess,    3, ["_", "_", "_", "_", "_"], ["a", "b", "c", "d"]],
+      ["e", :good_guess,   3, ["_", "e", "_", "_", "_"], ["a", "b", "c", "d", "e"]],
+      ["f", :bad_guess,    2, ["_", "e", "_", "_", "_"], ["a", "b", "c", "d", "e", "f"]],
+      ["g", :bad_guess,    1, ["_", "e", "_", "_", "_"], ["a", "b", "c", "d", "e", "f", "g"]],
+      ["h", :good_guess,   1, ["h", "e", "_", "_", "_"], ["a", "b", "c", "d", "e", "f", "g", "h"]],
+      ["i", :lost,         0, ["h", "e", "_", "_", "_"], ["a", "b", "c", "d", "e", "f", "g", "h", "i"]],
+    ]
+    |> test_sequence_of_moves()
+  end
+
+
   def test_sequence_of_moves(script) do
     game = Game.new_game("hello")
     Enum.reduce(script, game, &check_one_move/2)
