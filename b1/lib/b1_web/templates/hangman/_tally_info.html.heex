@@ -1,0 +1,18 @@
+    <table class="tally">
+      <tr>
+        <th>Turns left:</th>
+        <td><%= @tally.turns_left %></td>
+      </tr>
+
+      <tr>
+        <th>Letters used:</th>
+        <td class="spread"><%= @tally.used |> Enum.join(", ") %></td>
+      </tr>
+
+      <tr>
+        <th>Word so far:</th>
+        <td class="spread"><%= @tally.letters |> Enum.join(" ") %></td>
+      </tr>
+    </table>
+
+

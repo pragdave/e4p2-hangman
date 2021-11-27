@@ -1,6 +1,8 @@
 defmodule B1Web.HangmanView do
   use B1Web, :view
 
+  ################################################################################ 
+  
   def continue_or_try_again(conn, status) when status in [ :won, :lost ] do
     button("Try again", to: Routes.hangman_path(conn, :new))
       end
@@ -15,6 +17,8 @@ defmodule B1Web.HangmanView do
     end) 
   end
 
+  ################################################################################ 
+  
   @status_fields %{
     initializing: { "initializing", "Guess the word, a letter a a time" },
     good_guess:   {"good-guess",    "Good guess!"},
@@ -28,101 +32,9 @@ defmodule B1Web.HangmanView do
     { class, msg } = @status_fields[status]
     "<div class='status #{class}'>#{msg}</div>"
   end
-
-  def figure_for(0) do
-    ~s{
-      ┌───┐
-      │   │
-      O   │
-     /|\\  │
-     / \\  │
-          │
-    ══════╧══
-    }
-  end
-  def figure_for(1) do
-    ~s{
-      ┌───┐
-      │   │
-      O   │
-     /|\\  │
-     /    │
-          │
-    ══════╧══
-    }
-  end
-
-  def figure_for(2) do
-    ~s{
-    ┌───┐
-    │   │
-    O   │
-   /|\\  │
-        │
-        │
-  ══════╧══
-}
-  end
-
-  def figure_for(3) do
-    ~s{
-    ┌───┐
-    │   │
-    O   │
-   /|   │
-        │
-        │
-  ══════╧══
-}
-  end
-
-  def figure_for(4) do
-    ~s{
-    ┌───┐
-    │   │
-    O   │
-    |   │
-        │
-        │
-  ══════╧══
-}
-  end
-
-  def figure_for(5) do
-    ~s{
-    ┌───┐
-    │   │
-    O   │
-        │
-        │
-        │
-  ══════╧══
-}
-  end
-
-  def figure_for(6) do
-    ~s{
-    ┌───┐
-    │   │
-        │
-        │
-        │
-        │
-  ══════╧══
-}
-  end
-
-  def figure_for(7) do
-    ~s{
-    ┌───┐
-        │
-        │
-        │
-        │
-        │
-  ══════╧══
-}
-  end
-
+  
+  ################################################################################ 
+  
+  defdelegate figure_for(turns_left), to: B1Web.HangmanView.Helpers.FigureFor
 
 end

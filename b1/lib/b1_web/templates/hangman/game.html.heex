@@ -1,29 +1,12 @@
 <div id="game" class="row">
   <div class="column">
-    <pre>
-  <%= figure_for(@tally.turns_left) %>
-    </pre>
+    <pre><%= figure_for(@tally.turns_left) %></pre>
   </div>
+
   <div class="column">
-    <table class="tally">
-      <tr>
-        <th>Turns left:</th>
-        <td><%= @tally.turns_left %></td>
-      </tr>
-
-      <tr>
-        <th>Letters used:</th>
-        <td class="spread"><%= @tally.used |> Enum.join(", ") %></td>
-      </tr>
-
-      <tr>
-        <th>Word so far:</th>
-        <td class="spread"><%= @tally.letters |> Enum.join(" ") %></td>
-      </tr>
-    </table>
-
-    <%= move_status(@tally.game_state) |> raw() %>
-
+    <%= render("_tally_info.html", tally: @tally) %>
+    <%= move_status(@tally.game_state) |> raw %>
     <%= continue_or_try_again(@conn, @tally.game_state) %>
   </div>
 </div>
+
