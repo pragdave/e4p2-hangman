@@ -1,9 +1,10 @@
+
 defmodule B2Web.Live.Game.Alphabet do
 
   use B2Web, :live_component
 
   def mount(socket) do
-    letters = (?a..?z) |> Enum.map(&<< &1 :: utf8 >>) 
+    letters = (?a..?z) |> Enum.map(&<< &1 :: utf8 >>)
     { :ok, assign(socket, :letters, letters) }
   end
 
@@ -11,11 +12,10 @@ defmodule B2Web.Live.Game.Alphabet do
     ~L"""
     <div class="alphabet">
     <%= for letter <- assigns.letters do %>
-      <div 
-        phx-click="make_move" 
-        phx-value-key="<%= letter %>"
-        class="one-letter <%= classOf(letter, @tally) %>">
-        <%= letter %>
+      <div phx-click="make_move"
+           phx-value-key="<%= letter %>"
+           class="one-letter <%= classOf(letter, @tally) %>">
+      <%= letter %>
       </div>
       <% end %>
     </div>

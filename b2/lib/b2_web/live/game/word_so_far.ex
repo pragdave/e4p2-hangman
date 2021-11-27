@@ -1,5 +1,4 @@
 defmodule B2Web.Live.Game.WordSoFar do
-
   use B2Web, :live_component
 
   @states %{
@@ -22,8 +21,8 @@ defmodule B2Web.Live.Game.WordSoFar do
   def render(assigns) do
     ~L"""
     <div class="word-so-far">
-      <div class="game-state">
-         <%= state_name(@tally.game_state) %>
+    <div class="game-state">
+    <%= state_name(@tally.game_state) %>
     </div>
     <div class="letters">
     <%= for ch <- @tally.letters do %>
