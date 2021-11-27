@@ -8,3 +8,7 @@
   Word so far: <%= @ tally.letters |> Enum.join(" ") %>
 </p>
 
+<%= form_for(@conn, Routes.hangman_path(@conn, :update), [ as: "make_move", method: :put ], fn f ->  %>
+  <%= text_input(f, :guess) %>
+  <%= submit("Make next guess") %>
+<% end) %>
