@@ -4,7 +4,7 @@ defmodule Hangman.Runtime.Server do
 
   @type t :: pid()
 
-  @idle_timeout 4 * 1000
+  @idle_timeout 1 * 60 * 60 * 1000  # 1 hour
 
   alias Hangman.Impl.Game
 
