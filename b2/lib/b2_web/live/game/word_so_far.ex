@@ -26,10 +26,10 @@ defmodule B2Web.Live.Game.WordSoFar do
       </div>
       <div class="letters">
       <%= for ch <- @tally.letters do %>
-        <% cls = if ch != "_", do: "correct", else: "" %>
-        <div class="one-letter {cls}">
-          <%= ch %>
-        </div>
+        <% cls = if ch != "_", do: "one-letter correct", else: "one-letter" %>
+          <div class={cls}>
+            <%= ch %>
+          </div>
       <% end %>
       </div>
     </div>
