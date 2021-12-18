@@ -19,18 +19,19 @@ defmodule B2Web.Live.Game.WordSoFar do
   end
 
   def render(assigns) do
-    ~L"""
+    ~H"""
     <div class="word-so-far">
-    <div class="game-state">
-    <%= state_name(@tally.game_state) %>
-    </div>
-    <div class="letters">
-    <%= for ch <- @tally.letters do %>
-      <div class="one-letter <%= if ch != "_", do: "correct" %>">
-        <%= ch %>
+      <div class="game-state">
+        <%= state_name(@tally.game_state) %>
       </div>
-    <% end %>
-    </div>
+      <div class="letters">
+      <%= for ch <- @tally.letters do %>
+        <% cls = if ch != "_", do: "correct", else: "" %>
+        <div class="one-letter {cls}">
+          <%= ch %>
+        </div>
+      <% end %>
+      </div>
     </div>
     """
   end

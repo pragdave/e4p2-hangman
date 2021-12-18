@@ -9,13 +9,15 @@ defmodule B2Web.Live.Game.Alphabet do
   end
 
   def render(assigns) do
-    ~L"""
+    ~H"""
     <div class="alphabet">
     <%= for letter <- assigns.letters do %>
-      <div phx-click="make_move"
-           phx-value-key="<%= letter %>"
-           class="one-letter <%= classOf(letter, @tally) %>">
-      <%= letter %>
+      <div 
+        phx-click="make_move" 
+        phx-value-key={letter}
+        class={"one-letter #{classOf(letter, @tally)}"}
+      >
+        <%= letter %>
       </div>
       <% end %>
     </div>
