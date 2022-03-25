@@ -1,7 +1,7 @@
 defmodule TextClient.Impl.Player do
 
   @typep game :: Hangman.game()
-  @typep tally :: Hangman.tally()
+  @typep tally :: Hangman.Type.tally()
   @typep state :: {game, tally}
 
   @spec start(game) :: :ok
