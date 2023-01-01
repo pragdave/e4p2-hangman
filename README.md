@@ -1,4 +1,4 @@
-# Elixir for Programmers, 2002 Edition
+# Elixir for Programmers, 2020 Edition
 
 ## Example Project
 
