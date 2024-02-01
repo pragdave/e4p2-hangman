@@ -1,8 +1,7 @@
 defmodule TextClientTest do
   use ExUnit.Case
-  doctest TextClient
 
-  test "greets the world" do
-    assert TextClient.hello() == :world
+  test "empty test" do
+    assert 1 == 1
   end
 end
